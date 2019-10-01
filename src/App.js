@@ -1,18 +1,27 @@
 import React from 'react';
 import './App.css';
 import TodoListHeader from './TodoListHeader';
-import TodoListTanks from './TodoListTanks';
+import TodoListTasks from './TodoListTasks';
 import TodoListFooter from './TodoListFooter'
 
 
 class App extends React.Component {
-    render = () => {
+
+        tasks = [
+            {title: 'js', isDone: true, priority: 'Medium'},
+            {title: 'HTML', isDone: true, priority: 'low'}
+        ];
+        
+        filterValue = 'All'
+
+        render = () => {
+ 
         return (
             <div className="App">
                 <div className="todoList">
                 <TodoListHeader />
-                <TodoListTanks />
-                <TodoListFooter />
+                <TodoListTasks tasks={this.tasks} />
+                <TodoListFooter filterValue={this.filterValue} />
                 </div>
             </div>
         );
