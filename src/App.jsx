@@ -7,7 +7,7 @@ import TodoListFooter from './TodoListFooter'
 
 class App extends React.Component {
 
-        state = {
+    state = {
 
         tasks: [
             {title: 'js', isDone: true, priority: 'Medium'},

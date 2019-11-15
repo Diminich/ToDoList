@@ -18,3 +18,11 @@
 .filter-active {
   background-color: rgb(255, 0, 0);
 }
+
+.error {
+  border-color: red;
+}
+
+.todoList-task.done {
+  opacity: 0.5;
+}
