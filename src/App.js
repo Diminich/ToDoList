@@ -3,9 +3,7 @@ import './App.css';
 import TodoList from "./TodoList";
 import AddNewItemForm from "./AddNewItemForm";
 import {connect} from "react-redux";
-import {ADD_TODOLIST, addTodolistAC, addTodolistTC, setTodolistsAC, setTodolistsTC} from "./reducer";
-import axios from "axios";
-import {api} from "./api";
+import {addTodolistTC, setTodolistsTC} from "./reducer";
 
 class App extends React.Component {
 
