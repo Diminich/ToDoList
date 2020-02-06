@@ -3,6 +3,9 @@ import './App.css';
 import TodoList from "./TodoList";
 import AddNewItemForm from "./AddNewItemForm";
 import {connect} from "react-redux";
+import {ADD_TODOLIST, addTodolistAC, setTodolistsAC} from "./reducer";
+import axios from "axios";
+import {api} from "./api";
 
 class App extends React.Component {
 
@@ -13,22 +16,14 @@ class App extends React.Component {
     }
 
     addTodoList = (title) => {
-
-        let newTodoList = {
-            id: this.nextTodoListId,
-            title: title
-        }
-
-        this.props.addTodolist(newTodoList);/*
-
-        this.setState({todolists: [...this.state.todolists, newTodoList]}, () => {
-            this.saveState();
-        });
-
-        this.nextTodoListId++;*/
-
-
+        api.createTodolist(title)
+            .then(res => {
+                let todolist = res.data.data.item;
+                this.props.addTodolist(todolist);
+            });
     }
+
+
 
     componentDidMount() {
         this.restoreState();
@@ -43,6 +38,13 @@ class App extends React.Component {
     }
 
     restoreState = () => {
+        api.getTodolists().then(res => {
+                this.props.setTodolists(res.data);
+            });
+    }
+
+
+    ___restoreState = () => {
         // объявляем наш стейт стартовый
         let state = this.state;
         // считываем сохранённую ранее строку из localStorage
@@ -65,7 +67,7 @@ class App extends React.Component {
     render = () => {
         const todolists = this.props
             .todolists
-            .map(tl => <TodoList id={tl.id} title={tl.title} tasks={tl.tasks} />)
+            .map(tl => <TodoList key={tl.id} id={tl.id} title={tl.title} tasks={tl.tasks}/>)
 
         return (
             <>
@@ -88,14 +90,14 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        setTodolists: (todolists) => {
+            const action = setTodolistsAC(todolists);
+            dispatch(action)
+        },
         addTodolist: (newTodolist) => {
-            const action = {
-                type: "ADD-TODOLIST",
-                newTodolist: newTodolist
-            };
+            const action = addTodolistAC(newTodolist);
             dispatch(action)
         }
-
     }
 }
 
