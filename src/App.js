@@ -3,7 +3,7 @@ import './App.css';
 import TodoList from "./TodoList";
 import AddNewItemForm from "./AddNewItemForm";
 import {connect} from "react-redux";
-import {ADD_TODOLIST, addTodolistAC, setTodolistsAC} from "./reducer";
+import {ADD_TODOLIST, addTodolistAC, addTodolistTC, setTodolistsAC, setTodolistsTC} from "./reducer";
 import axios from "axios";
 import {api} from "./api";
 
@@ -16,32 +16,24 @@ class App extends React.Component {
     }
 
     addTodoList = (title) => {
-        api.createTodolist(title)
-            .then(res => {
-                let todolist = res.data.data.item;
-                this.props.addTodolist(todolist);
-            });
-    }
+        this.props.addTodolist(title)
+    };
 
 
 
     componentDidMount() {
         this.restoreState();
-    }
+    };
 
 
     saveState = () => {
-        // переводим объект в строку
         let stateAsString = JSON.stringify(this.state);
-        // сохраняем нашу строку в localStorage под ключом "our-state"
         localStorage.setItem("todolists-state", stateAsString);
-    }
+    };
 
     restoreState = () => {
-        api.getTodolists().then(res => {
-                this.props.setTodolists(res.data);
-            });
-    }
+        this.props.setTodolists();
+    };
 
 
     ___restoreState = () => {
@@ -62,7 +54,7 @@ class App extends React.Component {
                 }
             })
         });
-    }
+    };
 
     render = () => {
         const todolists = this.props
@@ -86,20 +78,20 @@ const mapStateToProps = (state) => {
     return {
         todolists: state.todolists
     }
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setTodolists: (todolists) => {
-            const action = setTodolistsAC(todolists);
-            dispatch(action)
-        },
         addTodolist: (newTodolist) => {
-            const action = addTodolistAC(newTodolist);
-            dispatch(action)
+            dispatch(addTodolistTC(newTodolist))
+        },
+
+        setTodolists: () => {
+            dispatch(setTodolistsTC())
         }
+
     }
-}
+};
 
 const ConnectedApp = connect(mapStateToProps, mapDispatchToProps)(App);
 export default ConnectedApp;
