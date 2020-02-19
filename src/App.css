@@ -3,12 +3,64 @@
   flex-direction: row;
 }
 
+.todoList-newTaskForm {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
 .todoList {
   width: 300px;
+  border: 2px ridge grey;
+  margin: 10px;
+}
+
+.todoList-header__title {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.todoListFooterButton {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  width: 90%;
+}
+
+.todoListIsHidden {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+
+}
+
+.todoListIsShow {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+
+}
+
+.todoListFooterSpan {
+  width: 30%;
+  border: 1px ridge grey;
+  text-align: center;
+}
+
+.buttonAddTodoLists {
+  margin-left: 10px;
+}
+
+.buttonHeaderTitle {
+  margin-left: 10px;
 }
 
 .todoList > div {
   padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .todoList-task {

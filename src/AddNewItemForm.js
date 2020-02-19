@@ -44,7 +44,7 @@ class AddNewItemForm extends React.Component {
                        onKeyPress={this.onKeyPress}
                        value={this.state.title}
                 />
-                <button onClick={this.onAddItemClick}>Add</button>
+                <button className='buttonAddTodoLists' onClick={this.onAddItemClick}>Add</button>
             </div>
 
         );

@@ -11,19 +11,19 @@ export const SET_TODOLISTS = "TodoList/Reducer/SET_TODOLISTS";
 
 const initialState = {
     "todolists": [
-        {
-            "id": 0, "title": "every day",
-            tasks: [
-                {"title": "css11", "isDone": false, "priority": "low", "id": 0},
-                {"title": "js", "isDone": false, "priority": "low", "id": 1},
-                {"title": "react", "isDone": false, "priority": "low", "id": 2},
-                {"title": "sasasa", "isDone": false, "priority": "low", "id": 3},
-                {"title": "yoaa", "isDone": false, "priority": "low", "id": 4},
-                {"title": "sddsdsds", "isDone": false, "priority": "low", "id": 5}]
-        },
-        {"id": 1, "title": "tomorrow", tasks: []},
-        {"id": 2, "title": "weewwe`", tasks: []},
-        {"id": 3, "title": "dddd", tasks: []}
+        // {
+        //     "id": 0, "title": "every day",
+        //     tasks: [
+        //         {"title": "css11", "isDone": false, "priority": "low", "id": 0},
+        //         {"title": "js", "isDone": false, "priority": "low", "id": 1},
+        //         {"title": "react", "isDone": false, "priority": "low", "id": 2},
+        //         {"title": "sasasa", "isDone": false, "priority": "low", "id": 3},
+        //         {"title": "yoaa", "isDone": false, "priority": "low", "id": 4},
+        //         {"title": "sddsdsds", "isDone": false, "priority": "low", "id": 5}]
+        // },
+        // {"id": 1, "title": "tomorrow", tasks: []},
+        // {"id": 2, "title": "weewwe`", tasks: []},
+        // {"id": 3, "title": "dddd", tasks: []}
     ]
 };
 
@@ -137,7 +137,7 @@ export const deleteTodolistTC = (todolistId) => {
                 dispatch(deleteTodolistAC(todolistId));
             });
     }
-}
+};
 
 const deleteTaskAC = (taskId, todolistId) => {
     return {type: DELETE_TASK, todolistId, taskId};
