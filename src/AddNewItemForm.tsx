@@ -1,11 +1,20 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import './App.css';
 
-class AddNewItemForm extends React.Component {
-    state = {
+interface IProps {
+    addItem: (newText: string) => void
+}
+
+interface IState {
+    error: boolean
+    title: string
+}
+
+class AddNewItemForm extends React.Component<IProps, IState> {
+    state: IState = {
         error: false,
         title: ""
-    }
+    };
 
     onAddItemClick = () => {
         let newText = this.state.title;
@@ -18,20 +27,19 @@ class AddNewItemForm extends React.Component {
             // передаём новый текст наружу
             this.props.addItem(newText);
         }
-    }
-
-    onTitleChanged = (e) => {
+    };
+    onTitleChanged = (e: ChangeEvent<HTMLInputElement>) => {
         this.setState({
             error: false,
             title: e.currentTarget.value
         });
-    }
+    };
 
-    onKeyPress = (e) => {
+    onKeyPress = (e: React.KeyboardEvent) => {
         if (e.key === "Enter") {
             this.onAddItemClick();
         }
-    }
+    };
 
 
     render = () => {
