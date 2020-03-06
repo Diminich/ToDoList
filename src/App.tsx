@@ -87,6 +87,5 @@ const mapStateToProps = (state: RootState): IMapStateProps => {
     }
 };
 
-const ConnectedApp = connect(mapStateToProps, {addTodolistTC, setTodolistsTC})(App);
-export default ConnectedApp;
+export default connect(mapStateToProps, {addTodolistTC, setTodolistsTC})(App);
 

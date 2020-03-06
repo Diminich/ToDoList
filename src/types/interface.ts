@@ -8,6 +8,11 @@ export interface ITodo {
     tasks: ITask[];
 }
 
+export interface IObj {
+    title?: string;
+    status?: number;
+}
+
 export interface ITask {
     addedDate: string;
     completed: boolean;
@@ -18,7 +23,7 @@ export interface ITask {
     isDone: boolean;
     priority: number;
     startDate?: null;
-    status: number;
+    status?: number;
     title: string;
     todoListId: string;
 }

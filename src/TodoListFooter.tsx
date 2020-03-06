@@ -1,29 +1,42 @@
 import React from 'react';
 import '../src/App.css';
 
-class TodoListFooter extends React.Component {
+interface IState {
+    isHidden: boolean
+}
+
+interface IProps {
+    changeFilter: (changeFilter: string) => void
+    filterValue: string
+}
+
+class TodoListFooter extends React.Component<IProps, IState> {
 
     state = {
         isHidden: false
-    }
+    };
 
     onAllFilterClick = () => {
         this.props.changeFilter("All");
-    }
+    };
+
     onCompletedFilterClick = () => {
         this.props.changeFilter("Completed");
-    }
+    };
+
     onActiveFilterClick = () => {
         this.props.changeFilter("Active");
-    }
+    };
+
     onShowFiltersClick = () => {
         this.setState({isHidden: true})
-    }
+    };
+
     onHideFiltersClick = () => {
         this.setState({isHidden: false})
-    }
+    };
 
-    render = (props) => {
+    render = () => {
 
         let classForAll = this.props.filterValue === "All" ? "filter-active" : "";
         let classForCompleted = this.props.filterValue === "Completed" ? "filter-active" : "";

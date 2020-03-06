@@ -1,18 +1,31 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import './App.css';
+import {ITask} from "./types/interface";
 
-class TodoListTask extends React.Component {
+interface IState {
+    editMode: boolean
+    title: string
+}
 
-    onIsDoneChanged = (e) => {
+interface IProps {
+    task: ITask
+    changeStatus: (id: string, status: number) => void
+    changeTitle: (id: string, title: string) => void
+    deleteTask: (id: string) => void
+}
+
+class TodoListTask extends React.Component<IProps, IState> {
+
+    onIsDoneChanged = (e: ChangeEvent<HTMLInputElement>) => {
         let status = e.currentTarget.checked ? 2 : 0;
         this.props.changeStatus(this.props.task.id, status);
     };
 
-    onTitleChanged = (e) => {
+    onTitleChanged = (e: ChangeEvent<HTMLInputElement>) => {
         this.setState({title: e.currentTarget.value});
     };
 
-    state = {
+    state: IState = {
         editMode: false,
         title: this.props.task.title
     };
@@ -32,13 +45,13 @@ class TodoListTask extends React.Component {
 
     render = () => {
         let containerCssClass = this.props.task.isDone ? "todoList-task done" : "todoList-task";
-        let priotityTitle = "";
+        let priorityTitle = "";
         switch (this.props.task.priority) {
-            case 0: priotityTitle = "Low"; break;
-            case 1: priotityTitle = "Middle"; break;
-            case 2: priotityTitle = "High"; break;
-            case 3: priotityTitle = "Urgently"; break;
-            case 4: priotityTitle = "Later"; break;
+            case 0: priorityTitle = "Low"; break;
+            case 1: priorityTitle = "Middle"; break;
+            case 2: priorityTitle = "High"; break;
+            case 3: priorityTitle = "Urgently"; break;
+            case 4: priorityTitle = "Later"; break;
         }
         return (
                 <div className={containerCssClass}>
@@ -48,7 +61,7 @@ class TodoListTask extends React.Component {
                         ? <input onBlur={this.deactivateEditMode} onChange={this.onTitleChanged} autoFocus={true}
                                  value={this.state.title} />
                         : <span onClick={this.activateEditMode}>{this.props.task.title}</span>
-                    }, priority: {priotityTitle} <button onClick={this.onDeleteTask}>X</button>
+                    }, priority: {priorityTitle} <button onClick={this.onDeleteTask}>X</button>
                 </div>
         );
     }

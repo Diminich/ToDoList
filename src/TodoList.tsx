@@ -13,7 +13,7 @@ import {
     updateTaskTC,
     updateTodolistTitleTC
 } from "./reducer";
-import {ITask, ITodo} from "./types/interface";
+import {IObj, ITask} from "./types/interface";
 
 interface IProps {
     id: string
@@ -73,7 +73,7 @@ class TodoList extends React.Component<IProps & IMapDispatchProps> {
         });
     };
 
-    changeTask = (taskId: string, obj: ITodo) => {
+    changeTask = (taskId: string, obj: IObj) => {
         this.props.tasks.forEach(t => {
             if (t.id === taskId) {
                 this.props.updateTaskTC(taskId, {...t, ...obj}, this.props.id)
@@ -81,12 +81,13 @@ class TodoList extends React.Component<IProps & IMapDispatchProps> {
         })
     };
 
-    changeStatus = (taskId: string, status: ITodo) => {
-        this.changeTask(taskId, status);
+    changeStatus = (taskId: string, status: number) => {
+        debugger
+        this.changeTask(taskId, {status});
     };
 
-    changeTitle = (taskId: string, title: ITodo) => {
-        this.changeTask(taskId, title);
+    changeTitle = (taskId: string, title: string) => {
+        this.changeTask(taskId, {title});
     };
 
     deleteTodolist = () => {
