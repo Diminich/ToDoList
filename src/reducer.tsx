@@ -156,9 +156,9 @@ const deleteTaskAC = (taskId: string, todolistId: string) => {
     return {type: DELETE_TASK, todolistId, taskId};
 };
 
-export const deleteTaskTC = (taskId: string, todolistId: string ) => {
+export const deleteTaskTC = (taskId: string, todolistId: string, ) => {
     return (dispatch: any) => {
-        api.deleteTask(taskId)
+        api.deleteTask(taskId, todolistId)
             .then(() => {
                 dispatch(deleteTaskAC(taskId, todolistId));
             });
@@ -182,7 +182,7 @@ const addTaskAC = (newTask: ITask, todolistId: string) => {
     return {type: ADD_TASK, newTask, todolistId};
 };
 
-export const addTaskTC = (todolistId: string, newText: string) => {
+export const addTaskTC = ( newText: string, todolistId: string) => {
     return (dispatch: any) => {
         api.createTask(newText, todolistId).then(res => {
             let newTasks = res.data.data.item;
@@ -225,7 +225,7 @@ const setTodolistsAC = (todolists: ITodo) => {
 
 export const setTodolistsTC = () => {
     return (dispatch: any) => {
-        api.getTodolists()
+         api.getTodolists()
             .then(res => {
             dispatch(setTodolistsAC(res.data));
         });

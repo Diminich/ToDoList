@@ -1,5 +1,7 @@
 import React, {ChangeEvent} from 'react';
 import './App.css';
+import {connect} from "react-redux";
+import {logoutTC} from "./loginReducer";
 
 interface IProps {
     addItem: (newText: string) => void
@@ -53,6 +55,7 @@ class AddNewItemForm extends React.Component<IProps, IState> {
                        value={this.state.title}
                 />
                 <button className='buttonAddTodoLists' onClick={this.onAddItemClick}>Add</button>
+
             </div>
 
         );

@@ -82,7 +82,6 @@ class TodoList extends React.Component<IProps & IMapDispatchProps> {
     };
 
     changeStatus = (taskId: string, status: number) => {
-        debugger
         this.changeTask(taskId, {status});
     };
 
@@ -95,6 +94,7 @@ class TodoList extends React.Component<IProps & IMapDispatchProps> {
     };
 
     deleteTask = (taskId: string) => {
+        debugger
         this.props.deleteTaskTC(taskId, this.props.id)
     };
 
@@ -107,7 +107,7 @@ class TodoList extends React.Component<IProps & IMapDispatchProps> {
         return (
             <div className="todoList">
                 <div className="todoList-header">
-                    <TodoListTitle title={this.props.title} onDelete={this.deleteTodolist}
+                    <TodoListTitle title={this.props.title} deleteTodolist={this.deleteTodolist}
                                    updateTitle={this.updateTitle}/>
                     <AddNewItemForm addItem={this.addTask}/>
 

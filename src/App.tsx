@@ -6,9 +6,13 @@ import {connect} from "react-redux";
 import {addTodolistTC, setTodolistsTC} from "./reducer";
 import {RootState} from "./store";
 import {ITodo} from "./types/interface";
+import Login from "./Login";
+import LogOut from './LogOut';
+
 
 interface IMapStateProps {
     todolists: ITodo[]
+    isLogin: boolean
 }
 
 interface IMapDispatchProps {
@@ -27,7 +31,6 @@ class App extends React.Component<IMapStateProps & IMapDispatchProps> {
     addTodoList = (title: string) => {
         this.props.addTodolistTC(title)
     };
-
 
 
     componentDidMount() {
@@ -69,23 +72,28 @@ class App extends React.Component<IMapStateProps & IMapDispatchProps> {
         const todolists = this.props.todolists
             .map((tl) => <TodoList key={tl.id} id={tl.id} title={tl.title} tasks={tl.tasks}/>);
         return (
-            <>
-                <div>
-                    <AddNewItemForm addItem={this.addTodoList}/>
-                </div>
-                <div className="App">
-                    {todolists}
-                </div>
-            </>
+            <div>
+                {this.props.isLogin ?
+                    <div>
+                        <div>
+                            <AddNewItemForm addItem={this.addTodoList}/>
+                            <LogOut />
+                        </div>
+                        <div className="App">
+                            {todolists}
+                        </div>
+                    </div> : <Login/>
+                }
+            </div>
         );
     }
 }
 
 const mapStateToProps = (state: RootState): IMapStateProps => {
     return {
-        todolists: state.todolist.todolists
+        todolists: state.todolist.todolists,
+        isLogin: state.login.isLogin
     }
 };
 
 export default connect(mapStateToProps, {addTodolistTC, setTodolistsTC})(App);
-

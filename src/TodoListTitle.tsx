@@ -4,7 +4,7 @@ import './App.css';
 interface IProps {
     title: string
     updateTitle: (title: string) => void
-    onDelete: () => void
+    deleteTodolist: () => void
 }
 
 interface IState {
@@ -34,13 +34,17 @@ class TodoListTitle extends React.Component<IProps, IState> {
     render = () => {
         return (
             <>
-            {
-                this.state.editMode
-                    ? <input value={this.state.title} autoFocus={true} onBlur={this.deactivateEditMode} onChange={this.onTitleChanged}/>
-                    : <h3 className="todoList-header__title" onClick={this.activateEditMode}>{this.props.title}
-                        <button className='buttonHeaderTitle' onClick={() => this.props.onDelete}>X</button>
-                    </h3>
-            }
+                {
+                    this.state.editMode
+                        ? <input value={this.state.title} autoFocus={true} onBlur={this.deactivateEditMode}
+                                 onChange={this.onTitleChanged}/>
+                        : <div className="todoList-header__title">
+                            <h3 onClick={this.activateEditMode}>{this.props.title}</h3>
+                            < button className='buttonHeaderTitle' onClick={this.props.deleteTodolist}>X</button>
+                        </div>
+
+
+                }
             </>
         );
     }

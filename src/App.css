@@ -19,6 +19,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .todoListFooterButton {
@@ -54,6 +55,7 @@
 
 .buttonHeaderTitle {
   margin-left: 10px;
+  height: 25px;
 }
 
 .todoList > div {
@@ -63,8 +65,8 @@
   align-items: flex-start;
 }
 
-.todoList-task {
-
+.button_logOut {
+  position:
 }
 
 .todoList-task.done {
