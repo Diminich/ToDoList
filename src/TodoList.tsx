@@ -94,7 +94,6 @@ class TodoList extends React.Component<IProps & IMapDispatchProps> {
     };
 
     deleteTask = (taskId: string) => {
-        debugger
         this.props.deleteTaskTC(taskId, this.props.id)
     };
 

@@ -10,7 +10,7 @@ const LogOut = (props: IMapDispatchProps) => {
 
  return (
      <div>
-         <button className={'button_logOut'} onClick={props.logoutTC}>Log out</button>
+         <button className={'buttonLogOut'} onClick={props.logoutTC}>Log out</button>
      </div>
  )
 };

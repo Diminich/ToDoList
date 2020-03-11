@@ -24,9 +24,9 @@ class Login extends React.Component<IMapDispatchProps> {
 
     render() {
         return (
-            <div>
-                <input onChange={this.inputEmail}/>
-                <input type={'password'} onChange={this.inputPassword}/>
+            <div className={'loginWrapper'}>
+                <input className={'inputEmail'} onChange={this.inputEmail}/>
+                <input className={'inputPassword'} type={'password'} onChange={this.inputPassword}/>
                 <button onClick={this.login}>Sign in</button>
             </div>
         )
